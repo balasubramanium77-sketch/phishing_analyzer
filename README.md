@@ -5,7 +5,7 @@
 The application provides an intuitive dashboard that helps analysts quickly identify phishing attempts, spoofed senders, and potentially malicious URLs through real-time analysis.
 
 🌐 **Live Demo:**  
-https://niran-cy.github.io/Email-analyzer/
+https://balasubramanium77-sketch.github.io/phishing_analyzer/
 
 ---
 
