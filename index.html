@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Phishing Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="soc-container">
+        <div class="header-bar">
+            <h1>🛡️ SOC Email Analysis Terminal</h1>
+            <p>Live Threat Intelligence & Payload Engine</p>
+        </div>
+
+        <div class="panel input-section">
+            <h2 style="margin-top: 0; font-size: 14px; color: var(--text-muted); text-transform: uppercase;">Raw Email Ingestion</h2>
+            <textarea id="email-content" spellcheck="false" placeholder="Paste full email source code (Headers + Body)..."></textarea>
+            <button class="btn-analyze" id="analyze-btn" onclick="analyzeEmail()">Execute Full Scan</button>
+        </div>
+
+        <div id="loader" class="loader" style="display: none;">
+            <div class="spinner"></div>
+            <p>Analyzing Headers & Querying Threat Feeds...</p>
+        </div>
+
+        <div id="results-panel" style="display: none;">
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-title">Master Severity</div>
+                    <div class="metric-value" id="val-severity">0%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Auth Risk (Spoof)</div>
+                    <div class="metric-value" id="val-auth">0%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Payload Risk (URLs)</div>
+                    <div class="metric-value" id="val-payload">0%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Intent (Heuristics)</div>
+                    <div class="metric-value" id="val-intent">0%</div>
+                </div>
+            </div>
+
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="switchTab('overview', this)">Overview Summary</button>
+                <button class="tab-btn" onclick="switchTab('headers', this)">Deep Header Inspection</button>
+                <button class="tab-btn" onclick="switchTab('payloads', this)">Payload Registry</button>
+            </div>
+
+            <div id="overview" class="tab-pane active panel">
+                <h3 style="margin-top: 0; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Threat Telemetry</h3>
+                <p id="summary-text" style="line-height: 1.6; color: var(--text-muted);"></p>
+                <ul id="red-flags-list" style="margin-top: 20px; padding-left: 20px;"></ul>
+            </div>
+
+            <div id="headers" class="tab-pane panel">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Protocol</th>
+                            <th>Raw Header Output</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="header-table-body">
+                        </tbody>
+                </table>
+            </div>
+
+            <div id="payloads" class="tab-pane panel">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Extracted Target (URL)</th>
+                            <th>Live VT Intel</th>
+                        </tr>
+                    </thead>
+                    <tbody id="payload-table-body">
+                        </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
